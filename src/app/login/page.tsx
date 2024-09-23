@@ -33,7 +33,7 @@ export default function Login() {
                 >
                     Submit
                 </button>
-                <p>Don't have an account? <Link href={"/signup"} className="text-sky-400 underline font-semibold">Sign up.</Link></p>
+                <p>Don&apos;t have an account? <Link href={"/signup"} className="text-sky-400 underline font-semibold">Sign up.</Link></p>
             </form>
         </div>
     );
