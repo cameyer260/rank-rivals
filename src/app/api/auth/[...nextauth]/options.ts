@@ -1,6 +1,6 @@
 import type { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import EmailProvider from "next-auth/providers/email";
+import DiscordProvider from "next-auth/providers/discord";
 
 export const options: NextAuthOptions = {
     providers: [
@@ -8,8 +8,9 @@ export const options: NextAuthOptions = {
             clientId: process.env.GOOGLE_CLIENT_ID || (() => { throw new Error("GOOGLE_CLIENT_ID .env variable is undefined."); })(),
             clientSecret: process.env.GOOGLE_CLIENT_SECRET || (() => { throw new Error("GOOGLE_CLIENT_SECRET .env variable is undefined."); })(),
           }),
-        EmailProvider({
-            
-        })
+        DiscordProvider({
+            clientId: process.env.DISCORD_CLIENT_ID || (() => { throw new Error("DISCORD_CLIENT_ID .env variable is undefined."); })(),
+            clientSecret: process.env.DISCORD_CLIENT_SECRET || (() => { throw new Error("DISCORD_CLIENT_SECRET .env variable is undefined>"); })(),
+        }),
     ],
 };
