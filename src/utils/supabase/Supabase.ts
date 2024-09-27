@@ -1,6 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 
-export const supabase = createClient(
+const supabase = createClient(
     process.env.SUPABASE_URL ||
         (() => {
             throw new Error("Supabase URL is undefined.");
@@ -10,3 +10,4 @@ export const supabase = createClient(
             throw new Error("Supabase api key is undefined.");
         })()
 );
+export default supabase;
