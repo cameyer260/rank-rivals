@@ -54,4 +54,9 @@ export const options: NextAuthOptions = {
                 })(),
         }),
     ],
+    // callbacks: {
+    //     async signIn() {
+
+    //     }
+    // }
 };

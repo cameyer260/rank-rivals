@@ -1,4 +1,4 @@
 export { default } from "next-auth/middleware";
 export const config = {
-    matcher: ["/about", "/games", "/leaderboard", "/profile", "/settings"],
+    matcher: ["/games", "/leaderboard", "/profile", "/settings"],
 };
