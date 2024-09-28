@@ -3,6 +3,8 @@ import GoogleProvider from "next-auth/providers/google";
 import DiscordProvider from "next-auth/providers/discord";
 import GitHubProvider from "next-auth/providers/github";
 import { SupabaseAdapter } from "@auth/supabase-adapter";
+import jwt from "jsonwebtoken";
+import { Session, User } from "next-auth";
 
 export const authOptions = {
     providers: [
@@ -67,6 +69,22 @@ export const authOptions = {
                   throw new Error("not working");
               })(),
     }),
+    callbacks: {
+        async session({ session, user }: { session: Session; user: User }) {
+            const signingSecret = process.env.SUPABASE_JWT_SECRET;
+            if (signingSecret) {
+                const payload = {
+                    aud: "authenticated",
+                    exp: Math.floor(new Date(session.expires).getTime() / 1000),
+                    sub: user.id,
+                    email: user.email,
+                    role: "authenticated",
+                };
+                session.supabaseAccessToken = jwt.sign(payload, signingSecret);
+            }
+            return session;
+        },
+    },
 };
 
 const handler = NextAuth(authOptions);
